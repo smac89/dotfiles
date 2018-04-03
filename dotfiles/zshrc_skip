@@ -5,16 +5,11 @@ source "$HOME/.zgen/zgen.zsh"
 
 zgen load zsh-users/zsh-completions
 
-# brew
-export HOMEBREW_BUILD_FROM_SOURCE=1
-zgen load smac89/linuxbrew
-
 zgen load zdharma/fast-syntax-highlighting
 zgen load zsh-users/zsh-autosuggestions
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 zgen load lukechilds/zsh-nvm
 
@@ -28,11 +23,7 @@ zgen oh-my-zsh
 eval "$(rbenv init -)"
 zgen oh-my-zsh plugins/rbenv
 
-# golang
-zgen oh-my-zsh plugins/golang
-
 zgen oh-my-zsh plugins/virtualenvwrapper
-# zgen oh-my-zsh plugins/tmux
 
 zgen oh-my-zsh plugins/git
 
@@ -40,11 +31,6 @@ zgen oh-my-zsh plugins/git
 zgen load denysdovhan/spaceship-prompt spaceship
 SPACESHIP_DIR_TRUNC=1
 SPACESHIP_NODE_SHOW=true
-# zgen theme gporrata/bklyn-zsh
-# zgen theme yardnsm/blox-zsh-theme
-# POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-# POWERLEVEL9K_MODE='awesome-patched'
-# zgen theme bhilburn/powerlevel9k powerlevel9k
 
 ################################################################################
 
@@ -64,7 +50,7 @@ local function add_to_path() {
 DEV_DIR="${HOME}/Development"
 USER_LIB="${HOME}/lib"
 BREW_HOME="${HOME}/.linuxbrew"
-HOMEBREW_BIN=${BREW_HOME}/bin
+HOMEBREW_BIN="${BREW_HOME}/bin"
 
 # virtualenvwrapper config
 export WORKON_HOME="${DEV_DIR}/virtualenvs"
@@ -72,11 +58,11 @@ export WORKON_HOME="${DEV_DIR}/virtualenvs"
 ################################################################################
 ########################### SKIP VARIABLES #####################################
 
-export JSHINT="${NVM_BIN:-$HOMEBREW_BIN}/jshint"
-export JASMINE="${NVM_BIN:-$HOMEBREW_BIN}/jasmine"
-export PHANTOMJS="${NVM_BIN:-$HOMEBREW_BIN}/phantomjs"
-export LESS_COMPILER="${NVM_BIN:-$HOMEBREW_BIN}/lessc"
-export UGLIFYJS_COMPILER="${NVM_BIN:-$HOMEBREW_BIN}/uglifyjs"
+export JSHINT="${NVM_BIN}/jshint"
+export JASMINE="${NVM_BIN}/jasmine"
+export PHANTOMJS="${NVM_BIN}/phantomjs"
+export LESS_COMPILER="${NVM_BIN}/lessc"
+export UGLIFYJS_COMPILER="${NVM_BIN}/uglifyjs"
 export SCSS_LINT="${RBENV_ROOT}/shims/scss-lint"
 export SASS_COMPILER="${RBENV_ROOT}/shims/sass"
 export COMPASS_COMPILER="${RBENV_ROOT}/shims/compass"
@@ -87,24 +73,13 @@ add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
 ########################### END SKIP VARIABLES #################################
 ################################################################################
 
-add_to_path 'PATH' "${USER_LIB}/jython/bin"
 add_to_path 'PATH' "$HOME/.local/bin"
 
 # pip-completions
 eval "$(pip completion --zsh)"
 
-# openFrameworks project generator
-export PG_OF_PATH="${USER_LIB}/openFrameworks/of_v0.9.8"
-
 # aliases
 source ~/.aliases
-
-###-tns-completion-###
-if [ -f $HOME/.tnsrc ]; then
-    source $HOME/.tnsrc
-fi
-
-export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
 
 ##########################################################
 ####################### DO LAST ##########################

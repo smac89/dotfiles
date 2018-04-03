@@ -1,0 +1,12 @@
+config:
+  backup: true
+  create: true
+  dotpath: dotfiles
+dotfiles:
+  f_zshrc:
+    dst: ~/.zshrc
+    src: zshrc
+profiles:
+  lenovix:
+    dotfiles:
+    - f_zshrc

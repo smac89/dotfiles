@@ -49,8 +49,6 @@ local function add_to_path() {
 
 DEV_DIR="${HOME}/Development"
 USER_LIB="${HOME}/lib"
-BREW_HOME="${HOME}/.linuxbrew"
-HOMEBREW_BIN="${BREW_HOME}/bin"
 
 # virtualenvwrapper config
 export WORKON_HOME="${DEV_DIR}/virtualenvs"

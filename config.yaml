@@ -7,6 +7,6 @@ dotfiles:
     dst: ~/.zshrc
     src: zshrc
 profiles:
-  lenovix:
+  skip:
     dotfiles:
     - f_zshrc

@@ -3,13 +3,18 @@ config:
   create: true
   dotpath: dotfiles
 dotfiles:
+  f_aliases:
+    dst: ~/.aliases
+    src: aliases.sh
   f_zshrc:
     dst: ~/.zshrc
     src: zshrc.sh
 profiles:
   home:
     dotfiles:
-    - f_zshrc
+    include:
+      - skip
   skip:
     dotfiles:
+    - f_aliases
     - f_zshrc

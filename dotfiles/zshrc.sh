@@ -1,6 +1,5 @@
 ################################################################################
 ################################### ZGEN #######################################
-################################################################################
 source "$HOME/.zgen/zgen.zsh"
 
 zgen load zsh-users/zsh-completions
@@ -21,37 +20,25 @@ zgen load lukechilds/zsh-nvm
 # npm
 zgen load lukechilds/zsh-better-npm-completion
 
-# Load the oh-my-zsh's library.
+# oh-my-zsh
 zgen oh-my-zsh
 
 # rbenv
 eval "$(rbenv init -)"
 zgen oh-my-zsh plugins/rbenv
 
+{%@@ if profile == 'home' @@%}
 # golang
 zgen oh-my-zsh plugins/golang
+{%@@ endif @@%}
 
 zgen oh-my-zsh plugins/virtualenvwrapper
-# zgen oh-my-zsh plugins/tmux
-
 zgen oh-my-zsh plugins/git
 
 # Load the theme.
 zgen load denysdovhan/spaceship-prompt spaceship
 SPACESHIP_DIR_TRUNC=1
 SPACESHIP_NODE_SHOW=true
-# zgen theme gporrata/bklyn-zsh
-# zgen theme yardnsm/blox-zsh-theme
-# POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-# POWERLEVEL9K_MODE='awesome-patched'
-# zgen theme bhilburn/powerlevel9k powerlevel9k
-
-################################################################################
-
-################################################################################
-###################################### BEGIN ###################################
-#################################### MY CONFIG #################################
-################################################################################
 
 local function add_to_path() {
   for p in ${(s.:.)2}; do
@@ -61,50 +48,84 @@ local function add_to_path() {
   done
 }
 
-DEV_DIR="${HOME}/Development"
-USER_LIB="${HOME}/lib"
-BREW_HOME="${HOME}/.linuxbrew"
-HOMEBREW_BIN=${BREW_HOME}/bin
-
-# virtualenvwrapper config
-export WORKON_HOME="${DEV_DIR}/virtualenvs"
-
+{%@@ if profile == 'skip' @@%}
 ################################################################################
 ########################### SKIP VARIABLES #####################################
-
-export JSHINT="${NVM_BIN:-$HOMEBREW_BIN}/jshint"
-export JASMINE="${NVM_BIN:-$HOMEBREW_BIN}/jasmine"
-export PHANTOMJS="${NVM_BIN:-$HOMEBREW_BIN}/phantomjs"
-export LESS_COMPILER="${NVM_BIN:-$HOMEBREW_BIN}/lessc"
-export UGLIFYJS_COMPILER="${NVM_BIN:-$HOMEBREW_BIN}/uglifyjs"
+export JSHINT="${NVM_BIN}/jshint"
+export JASMINE="${NVM_BIN}/jasmine"
+export PHANTOMJS="${NVM_BIN}/phantomjs"
+export LESS_COMPILER="${NVM_BIN}/lessc"
+export UGLIFYJS_COMPILER="${NVM_BIN}/uglifyjs"
 export SCSS_LINT="${RBENV_ROOT}/shims/scss-lint"
 export SASS_COMPILER="${RBENV_ROOT}/shims/sass"
 export COMPASS_COMPILER="${RBENV_ROOT}/shims/compass"
 export GOOGLE_APP_ENGINE_DIR="${USER_LIB}/google_appengine"
 
 add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
+{%@@ endif @@%}
 
-########################### END SKIP VARIABLES #################################
 ################################################################################
+###################################### BEGIN ###################################
+#################################### MY CONFIG #################################
 
-add_to_path 'PATH' "${USER_LIB}/jython/bin"
-add_to_path 'PATH' "$HOME/.local/bin"
+DEV_DIR="${HOME}/Development"
+USER_LIB="${HOME}/lib"
+BREW_HOME="${HOME}/.linuxbrew"
+HOMEBREW_BIN="${BREW_HOME}/bin"
+
+export VISUAL='subl -w'
+export EDITOR="$VISUAL"
+
+add_to_path 'PKG_CONFIG_PATH' '/usr/lib/x86_64-linux-gnu/pkgconfig'
+add_to_path 'PKG_CONFIG_PATH' '/usr/share/pkgconfig'
+add_to_path 'PKG_CONFIG_PATH' '/usr/lib/pkgconfig'
+add_to_path 'PKG_CONFIG_PATH' '/usr/local/lib/pkgconfig'
+
+# virtualenvwrapper config
+export WORKON_HOME="${DEV_DIR}/virtualenvs"
 
 # pip-completions
 eval "$(pip completion --zsh)"
 
-# openFrameworks project generator
-export PG_OF_PATH="${USER_LIB}/openFrameworks/of_v0.9.8"
-
 # aliases
 source ~/.aliases
 
-###-tns-completion-###
-if [ -f $HOME/.tnsrc ]; then
-    source $HOME/.tnsrc
+{%@@ if profile == 'home' @@%}
+# Android sdk and ndk
+export ANDROID_SDK="${USER_LIB}/android/sdk"
+export ANDROID_HOME="${ANDROID_SDK}"
+export ANDROID_NDK_HOME="${ANDROID_SDK}/ndk-bundle"
+
+add_to_path 'PATH' "$(printf %s: ${ANDROID_SDK}/{tools,platform-tools})"
+add_to_path 'PATH' "${ANDROID_NDK_HOME}"
+
+# Swift
+add_to_path 'PATH' "${USER_LIB}/swift/usr/bin"
+
+add_to_path 'PATH' "${USER_LIB}/jython/bin"
+
+add_to_path 'PATH' "$HOME/.local/bin"
+
+# openFrameworks project generator
+export PG_OF_PATH="${USER_LIB}/openFrameworks/of_v0.9.8"
+export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
+
+# Activator for Scala
+if [ -d "${USER_LIB}/scala-activator/bin" ]; then
+	add_to_path 'PATH' "${USER_LIB}/scala-activator/bin"
 fi
 
-export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
+# Flutter and Dart
+if [ -d "${USER_LIB}/flutter/bin" ]; then
+	add_to_path 'PATH' "${USER_LIB}/flutter/bin"
+	add_to_path 'PATH' "${USER_LIB}/flutter/bin/cache/dart-sdk/bin"
+fi
+
+# Nativescript
+if [ -f "$HOME/.tnsrc" ]; then
+    source $HOME/.tnsrc
+fi
+{%@@ endif @@%}
 
 ##########################################################
 ####################### DO LAST ##########################

@@ -3,16 +3,13 @@ config:
   create: true
   dotpath: dotfiles
 dotfiles:
-  f_zshrc_skip:
+  f_zshrc:
     dst: ~/.zshrc
-    src: zshrc_skip
-  f_zshrc_home:
-    dst: ~/.zshrc
-    src: zshrc_home
+    src: zshrc.sh
 profiles:
   home:
     dotfiles:
-    - f_zshrc_home
+    - f_zshrc
   skip:
     dotfiles:
-    - f_zshrc_skip
+    - f_zshrc

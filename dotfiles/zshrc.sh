@@ -2,43 +2,49 @@
 ################################### ZGEN #######################################
 source "$HOME/.zgen/zgen.zsh"
 
-zgen load zsh-users/zsh-completions
+if ! zgen saved; then
+    zgen load zsh-users/zsh-completions
 
-# brew
-export HOMEBREW_BUILD_FROM_SOURCE=1
-zgen load smac89/linuxbrew
+    # brew
+    export HOMEBREW_BUILD_FROM_SOURCE=1
+    zgen load smac89/linuxbrew
 
-zgen load zdharma/fast-syntax-highlighting
-zgen load zsh-users/zsh-autosuggestions
+    zgen load zdharma/fast-syntax-highlighting
+    zgen load zsh-users/zsh-autosuggestions
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-export NVM_LAZY_LOAD=true
-export NVM_AUTO_USE=true
-zgen load lukechilds/zsh-nvm
+    # nvm
+    export NVM_DIR="$HOME/.nvm"
+    export NVM_LAZY_LOAD=true
+    export NVM_AUTO_USE=true
+    zgen load lukechilds/zsh-nvm
 
-# npm
-zgen load lukechilds/zsh-better-npm-completion
+    # npm
+    zgen load lukechilds/zsh-better-npm-completion
 
-# oh-my-zsh
-zgen oh-my-zsh
+    # oh-my-zsh
+    zgen oh-my-zsh
 
-# rbenv
-eval "$(rbenv init -)"
-zgen oh-my-zsh plugins/rbenv
+    # rbenv
+    eval "$(rbenv init -)"
+    zgen oh-my-zsh plugins/rbenv
 
-{%@@ if profile == 'home' @@%}
-# golang
-zgen oh-my-zsh plugins/golang
-{%@@ endif @@%}
+    {%@@ if profile == 'home' @@%}
+    # golang
+    zgen oh-my-zsh plugins/golang
+    {%@@ endif @@%}
 
-zgen oh-my-zsh plugins/virtualenvwrapper
-zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/virtualenvwrapper
+    zgen oh-my-zsh plugins/git
 
-# Load the theme.
-zgen load denysdovhan/spaceship-prompt spaceship
-SPACESHIP_DIR_TRUNC=1
-SPACESHIP_NODE_SHOW=true
+    # Load the theme.
+    zgen load denysdovhan/spaceship-prompt spaceship
+    SPACESHIP_DIR_TRUNC='1'
+    SPACESHIP_DIR_PREFIX=''
+    SPACESHIP_DIR_TRUNC_REPO=true
+
+    # Save the configurations
+    zgen save
+fi
 
 local function add_to_path() {
   for p in ${(s.:.)2}; do
@@ -112,13 +118,13 @@ export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
 
 # Activator for Scala
 if [ -d "${USER_LIB}/scala-activator/bin" ]; then
-	add_to_path 'PATH' "${USER_LIB}/scala-activator/bin"
+    add_to_path 'PATH' "${USER_LIB}/scala-activator/bin"
 fi
 
 # Flutter and Dart
 if [ -d "${USER_LIB}/flutter/bin" ]; then
-	add_to_path 'PATH' "${USER_LIB}/flutter/bin"
-	add_to_path 'PATH' "${USER_LIB}/flutter/bin/cache/dart-sdk/bin"
+    add_to_path 'PATH' "${USER_LIB}/flutter/bin"
+    add_to_path 'PATH' "${USER_LIB}/flutter/bin/cache/dart-sdk/bin"
 fi
 
 # Nativescript

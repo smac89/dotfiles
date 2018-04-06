@@ -38,22 +38,24 @@ if ! zgen saved; then
 
     # Load the theme.
     zgen load denysdovhan/spaceship-prompt spaceship
-    SPACESHIP_TIME_SHOW=true
-    {%@@ if profile == 'home' @@%}
-    SPACESHIP_PROMPT_ORDER=(
-        time dir host git package node ruby swift golang rust haskell
-        aws exec_time line_sep battery vi_mode jobs exit_code char
-    )
-    {%@@ elif profile == 'skip' @@%}
-    SPACESHIP_PROMPT_ORDER=(
-        time dir host git package node ruby
-        aws exec_time line_sep battery jobs exit_code char
-    )
-    {%@@ endif @@%}
 
     # Save the configurations
     zgen save
 fi
+
+# Theme options
+SPACESHIP_TIME_SHOW=true
+{%@@ if profile == 'home' @@%}
+SPACESHIP_PROMPT_ORDER=(
+    time dir host git package node ruby swift golang rust haskell
+    aws venv exec_time line_sep battery vi_mode jobs exit_code char
+)
+{%@@ elif profile == 'skip' @@%}
+SPACESHIP_PROMPT_ORDER=(
+    time dir host git package node ruby
+    aws venv exec_time line_sep battery jobs exit_code char
+)
+{%@@ endif @@%}
 
 local function add_to_path() {
   for p in ${(s.:.)2}; do

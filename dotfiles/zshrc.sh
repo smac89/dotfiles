@@ -43,6 +43,9 @@ if ! zgen saved; then
     zgen save
 fi
 
+# auto-suggestions options
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+
 # Theme options
 SPACESHIP_TIME_SHOW=true
 {%@@ if profile == 'home' @@%}
@@ -107,7 +110,6 @@ eval "$(pip completion --zsh)"
 # aliases
 source ~/.aliases
 
-{%@@ if profile == 'home' @@%}
 # Android sdk and ndk
 export ANDROID_SDK="${USER_LIB}/android/sdk"
 export ANDROID_HOME="${ANDROID_SDK}"
@@ -116,6 +118,10 @@ export ANDROID_NDK_HOME="${ANDROID_SDK}/ndk-bundle"
 add_to_path 'PATH' "$(printf %s: ${ANDROID_SDK}/{tools,platform-tools})"
 add_to_path 'PATH' "${ANDROID_NDK_HOME}"
 
+# Groovy
+export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
+
+{%@@ if profile == 'home' @@%}
 # Swift
 add_to_path 'PATH' "${USER_LIB}/swift/usr/bin"
 
@@ -125,7 +131,6 @@ add_to_path 'PATH' "$HOME/.local/bin"
 
 # openFrameworks project generator
 export PG_OF_PATH="${USER_LIB}/openFrameworks/of_v0.9.8"
-export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
 
 # Activator for Scala
 if [ -d "${USER_LIB}/scala-activator/bin" ]; then

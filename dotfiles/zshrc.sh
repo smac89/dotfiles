@@ -38,6 +38,7 @@ if ! zgen saved; then
 
     # Load the theme.
     zgen load denysdovhan/spaceship-prompt spaceship
+    SPACESHIP_TIME_SHOW
     {%@@ if profile == 'home' @@%}
     SPACESHIP_PROMPT_ORDER=(
         time dir host git package node ruby swift golang rust haskell

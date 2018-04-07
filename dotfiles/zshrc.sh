@@ -43,9 +43,6 @@ if ! zgen saved; then
     zgen save
 fi
 
-# auto-suggestions options
-ZSH_AUTOSUGGEST_USE_ASYNC=true
-
 # Theme options
 SPACESHIP_TIME_SHOW=true
 {%@@ if profile == 'home' @@%}

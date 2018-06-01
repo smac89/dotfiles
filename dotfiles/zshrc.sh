@@ -76,7 +76,7 @@ export UGLIFYJS_COMPILER="${NVM_BIN}/uglifyjs"
 export SCSS_LINT="${RBENV_ROOT}/shims/scss-lint"
 export SASS_COMPILER="${RBENV_ROOT}/shims/sass"
 export COMPASS_COMPILER="${RBENV_ROOT}/shims/compass"
-export GOOGLE_APP_ENGINE_DIR="${USER_LIB}/google_appengine"
+export GOOGLE_APP_ENGINE_DIR="${HOME}/lib/google_appengine"
 
 add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
 {%@@ endif @@%}

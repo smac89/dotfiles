@@ -34,6 +34,9 @@ if ! zgen saved; then
     {%@@ endif @@%}
 
     zgen oh-my-zsh plugins/virtualenvwrapper
+    if which pyenv-virtualenv-init > /dev/null; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
     zgen oh-my-zsh plugins/git
 
     # Load the theme.

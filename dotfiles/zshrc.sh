@@ -62,7 +62,7 @@ SPACESHIP_PROMPT_ORDER=(
 
 local function add_to_path() {
   for p in ${(s.:.)2}; do
-    if [[ ! "${(P)1}" =~ "$p" ]]; then
+    if [[ ! "${(P)1}" =~ "${p%*/}" ]]; then
       export "$1"="$p:${(P)1}"
     fi
   done

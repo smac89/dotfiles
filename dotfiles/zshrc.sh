@@ -96,6 +96,8 @@ HOMEBREW_BIN="${BREW_HOME}/bin"
 export VISUAL='subl -w'
 export EDITOR="$VISUAL"
 
+add_to_path 'PATH' "$HOME/bin/"
+
 add_to_path 'PKG_CONFIG_PATH' '/usr/lib/x86_64-linux-gnu/pkgconfig'
 add_to_path 'PKG_CONFIG_PATH' '/usr/share/pkgconfig'
 add_to_path 'PKG_CONFIG_PATH' '/usr/lib/pkgconfig'

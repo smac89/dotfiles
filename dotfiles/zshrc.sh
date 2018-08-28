@@ -33,6 +33,8 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/golang
     {%@@ endif @@%}
 
+    # virtualenvwrapper config
+    export WORKON_HOME="$HOME/Development/virtualenvs"
     zgen oh-my-zsh plugins/virtualenvwrapper
     if which pyenv-virtualenv-init > /dev/null; then
         eval "$(pyenv virtualenv-init -)"
@@ -61,11 +63,12 @@ SPACESHIP_PROMPT_ORDER=(
 {%@@ endif @@%}
 
 local function add_to_path() {
-  for p in ${(s.:.)2}; do
-    if [[ ! "${(P)1}" =~ "${p%*/}" ]]; then
-      export "$1"="$p:${(P)1}"
-    fi
-  done
+    for p in ${(s.:.)2}; do
+        if [[ ! "${(P)1}" =~ "${p%/}" ]]; then
+            new_path="$p:${(P)1#:}"
+            export "$1"="${new_path%:}"
+        fi
+    done
 }
 
 {%@@ if profile == 'skip' @@%}
@@ -103,9 +106,6 @@ add_to_path 'PKG_CONFIG_PATH' '/usr/share/pkgconfig'
 add_to_path 'PKG_CONFIG_PATH' '/usr/lib/pkgconfig'
 add_to_path 'PKG_CONFIG_PATH' '/usr/local/lib/pkgconfig'
 
-# virtualenvwrapper config
-export WORKON_HOME="${DEV_DIR}/virtualenvs"
-
 # pip-completions
 eval "$(pip completion --zsh)"
 
@@ -133,11 +133,6 @@ add_to_path 'PATH' "$HOME/.local/bin"
 
 # openFrameworks project generator
 export PG_OF_PATH="${USER_LIB}/openFrameworks/of_v0.9.8"
-
-# Activator for Scala
-if [ -d "${USER_LIB}/scala-activator/bin" ]; then
-    add_to_path 'PATH' "${USER_LIB}/scala-activator/bin"
-fi
 
 # Flutter and Dart
 if [ -d "${USER_LIB}/flutter/bin" ]; then

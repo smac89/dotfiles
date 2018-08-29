@@ -43,7 +43,6 @@ profiles:
       - f_aliases
       - f_profile
   home:
-    dotfiles:
     include:
       - bash
   skip:

@@ -1,20 +1,51 @@
+actions:
+  git-completion-bash: cp extras/git-completion.sh ~/.git-completion.sh && cp extras/git-prompt.sh ~/.git-prompt.sh
+
 config:
   backup: true
   create: true
   dotpath: dotfiles
 dotfiles:
-  f_aliases:
-    dst: ~/.aliases
-    src: aliases.sh
+############ ZSH #############
   f_zshrc:
     dst: ~/.zshrc
     src: zshrc.sh
+
+############ BASH #############
+  f_bashrc:
+    dst: ~/.bashrc
+    src: bashrc.sh
+    actions:
+      - git-completion-bash
+  f_bash_ps1:
+    dst: ~/.bash-ps1.bash
+    src: bash-ps1.sh
+
+############ OTHER #############
+  f_profile:
+    dst: ~/.profile
+    src: profile.sh
+    link: true
+  f_aliases:
+    dst: ~/.aliases
+    src: aliases.sh
+
 profiles:
+  bash:
+    dotfiles:
+      - f_bashrc
+      - f_bash_ps1
+      - f_aliases
+      - f_profile
+  zsh:
+    dotfiles:
+      - f_zshrc
+      - f_aliases
+      - f_profile
   home:
     dotfiles:
     include:
-      - skip
+      - bash
   skip:
-    dotfiles:
-    - f_aliases
-    - f_zshrc
+    include:
+      - zsh

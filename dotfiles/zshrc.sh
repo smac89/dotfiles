@@ -2,6 +2,11 @@
 ################################### ZGEN #######################################
 source "$HOME/.zgen/zgen.zsh"
 
+DEV_DIR="${HOME}/Development"
+USER_LIB="${HOME}/lib"
+BREW_HOME="${HOME}/.linuxbrew"
+HOMEBREW_BIN="${BREW_HOME}/bin"
+
 if ! zgen saved; then
     zgen load zsh-users/zsh-completions
 
@@ -34,7 +39,7 @@ if ! zgen saved; then
     {%@@ endif @@%}
 
     # virtualenvwrapper config
-    export WORKON_HOME="$HOME/Development/virtualenvs"
+    export WORKON_HOME="$DEV_DIR/virtualenvs"
     zgen oh-my-zsh plugins/virtualenvwrapper
     if which pyenv-virtualenv-init > /dev/null; then
         eval "$(pyenv virtualenv-init -)"
@@ -91,20 +96,7 @@ add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
 ###################################### BEGIN ###################################
 #################################### MY CONFIG #################################
 
-DEV_DIR="${HOME}/Development"
-USER_LIB="${HOME}/lib"
-BREW_HOME="${HOME}/.linuxbrew"
-HOMEBREW_BIN="${BREW_HOME}/bin"
-
-export VISUAL='subl -w'
-export EDITOR="$VISUAL"
-
-add_to_path 'PATH' "$HOME/bin/"
-
-add_to_path 'PKG_CONFIG_PATH' '/usr/lib/x86_64-linux-gnu/pkgconfig'
-add_to_path 'PKG_CONFIG_PATH' '/usr/share/pkgconfig'
-add_to_path 'PKG_CONFIG_PATH' '/usr/lib/pkgconfig'
-add_to_path 'PKG_CONFIG_PATH' '/usr/local/lib/pkgconfig'
+[ -f ~/.profile ] && source ~/.profile
 
 # pip-completions
 eval "$(pip completion --zsh)"
@@ -112,41 +104,12 @@ eval "$(pip completion --zsh)"
 # aliases
 source ~/.aliases
 
-# Android sdk and ndk
-export ANDROID_SDK="${USER_LIB}/android/sdk"
-export ANDROID_HOME="${ANDROID_SDK}"
-export ANDROID_NDK_HOME="${ANDROID_SDK}/ndk-bundle"
-
-add_to_path 'PATH' "$(printf %s: ${ANDROID_SDK}/{tools,platform-tools})"
-add_to_path 'PATH' "${ANDROID_NDK_HOME}"
-
-# Groovy
-export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
-
-{%@@ if profile == 'home' @@%}
-# Swift
-add_to_path 'PATH' "${USER_LIB}/swift/usr/bin"
-
-add_to_path 'PATH' "${USER_LIB}/jython/bin"
-
-add_to_path 'PATH' "$HOME/.local/bin"
-
-# openFrameworks project generator
-export PG_OF_PATH="${USER_LIB}/openFrameworks/of_v0.9.8"
-
-# Flutter and Dart
-if [ -d "${USER_LIB}/flutter/bin" ]; then
-    add_to_path 'PATH' "${USER_LIB}/flutter/bin"
-    add_to_path 'PATH' "${USER_LIB}/flutter/bin/cache/dart-sdk/bin"
-fi
-
-# Nativescript
-if [ -f "$HOME/.tnsrc" ]; then
-    source $HOME/.tnsrc
-fi
-{%@@ endif @@%}
-
 ##########################################################
 ####################### DO LAST ##########################
 unset -f add_to_path
+# cleanup
+unset DEV_DIR
+unset USER_LIB
+unset BREW_HOME
+unset HOMEBREW_BIN
 ##########################################################

@@ -5,8 +5,8 @@ trans:
 
 config:
   backup: true
-  create: true
-  dotpath: dotfiles
+  create: false
+  dotpath: ./dotfiles
 dotfiles:
 ############ ZSH #############
   f_zshrc:

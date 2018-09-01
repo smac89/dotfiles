@@ -96,7 +96,7 @@ add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
 ###################################### BEGIN ###################################
 #################################### MY CONFIG #################################
 
-[ -f ~/.profile ] && source ~/.profile
+[ -f ~/.base_profile ] && source ~/.base_profile
 
 # pip-completions
 eval "$(pip completion --zsh)"

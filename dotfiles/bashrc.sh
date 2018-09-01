@@ -97,7 +97,7 @@ function add_to_path() {
 }
 
 # profile
-[ -f ~/.profile ] && source ~/.profile
+[ -f ~/.base_profile ] && source ~/.base_profile
 
 DEV_DIR="${HOME}/Development"
 USER_LIB="${HOME}/lib"

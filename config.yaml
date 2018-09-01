@@ -1,5 +1,7 @@
 actions:
   git-completion-bash: cp extras/git-completion.sh ~/.git-completion.sh && cp extras/git-prompt.sh ~/.git-prompt.sh
+trans:
+  disclaimer: python scripts/disclaimer.py {0} > {1}
 
 config:
   backup: true
@@ -10,6 +12,8 @@ dotfiles:
   f_zshrc:
     dst: ~/.zshrc
     src: zshrc.sh
+    trans:
+      - disclaimer
 
 ############ BASH #############
   f_bashrc:
@@ -20,15 +24,21 @@ dotfiles:
   f_bash_ps1:
     dst: ~/.bash-ps1.bash
     src: bash-ps1.sh
+    trans:
+      - disclaimer
 
 ############ OTHER #############
   f_profile:
-    dst: ~/.profile
+    dst: ~/.base_profile
     src: profile.sh
-    link: true
+    link: false
+    trans:
+      - disclaimer
   f_aliases:
     dst: ~/.aliases
     src: aliases.sh
+    trans:
+      - disclaimer
 
 profiles:
   bash:

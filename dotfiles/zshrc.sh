@@ -7,51 +7,46 @@ USER_LIB="${HOME}/lib"
 BREW_HOME="${HOME}/.linuxbrew"
 HOMEBREW_BIN="${BREW_HOME}/bin"
 
-if ! zgen saved; then
-    zgen load zsh-users/zsh-completions
+zgen load zsh-users/zsh-completions
 
-    # brew
-    export HOMEBREW_BUILD_FROM_SOURCE=1
-    zgen load smac89/linuxbrew
+# brew
+export HOMEBREW_BUILD_FROM_SOURCE=1
+zgen load smac89/linuxbrew
 
-    zgen load zdharma/fast-syntax-highlighting
-    zgen load zsh-users/zsh-autosuggestions
+zgen load zdharma/fast-syntax-highlighting
+zgen load zsh-users/zsh-autosuggestions
 
-    # nvm
-    export NVM_DIR="$HOME/.nvm"
-    export NVM_LAZY_LOAD=true
-    export NVM_AUTO_USE=true
-    zgen load lukechilds/zsh-nvm
+# nvm
+export NVM_DIR="$HOME/.nvm"
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+zgen load lukechilds/zsh-nvm
 
-    # npm
-    zgen load lukechilds/zsh-better-npm-completion
+# npm
+zgen load lukechilds/zsh-better-npm-completion
 
-    # oh-my-zsh
-    zgen oh-my-zsh
+# oh-my-zsh
+zgen oh-my-zsh
 
-    # rbenv
-    eval "$(rbenv init -)"
-    zgen oh-my-zsh plugins/rbenv
+# rbenv
+eval "$(rbenv init -)"
+zgen oh-my-zsh plugins/rbenv
 
-    {%@@ if profile == 'home' @@%}
-    # golang
-    zgen oh-my-zsh plugins/golang
-    {%@@ endif @@%}
+{%@@ if profile == 'home' @@%}
+# golang
+zgen oh-my-zsh plugins/golang
+{%@@ endif @@%}
 
-    # virtualenvwrapper config
-    export WORKON_HOME="$DEV_DIR/virtualenvs"
-    zgen oh-my-zsh plugins/virtualenvwrapper
-    if which pyenv-virtualenv-init > /dev/null; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
-    zgen oh-my-zsh plugins/git
+# virtualenvwrapper config
+export WORKON_HOME="$DEV_DIR/virtualenvs"
+zgen oh-my-zsh plugins/virtualenvwrapper
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+zgen oh-my-zsh plugins/git
 
-    # Load the theme.
-    zgen load denysdovhan/spaceship-prompt spaceship
+# Load the theme.
+zgen load denysdovhan/spaceship-prompt spaceship
 
-    # Save the configurations
-    zgen save
-fi
+##################################################################
 
 # Theme options
 SPACESHIP_TIME_SHOW=true

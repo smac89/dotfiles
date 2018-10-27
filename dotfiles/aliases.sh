@@ -1,4 +1,5 @@
 alias egrep='egrep --color=auto'
+alias multicd='multicd -i -v -m'
 {%@@ if profile == 'home' @@%}
 alias jython='TERM=xterm-color jython'
 

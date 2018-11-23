@@ -10,7 +10,6 @@ HOMEBREW_BIN="${BREW_HOME}/bin"
 zgen load zsh-users/zsh-completions
 
 # brew
-export HOMEBREW_BUILD_FROM_SOURCE=1
 zgen load smac89/linuxbrew
 
 zgen load zdharma/fast-syntax-highlighting

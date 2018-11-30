@@ -1,6 +1,5 @@
 import sys
 import os
-import sys
 import re
 from os import path
 

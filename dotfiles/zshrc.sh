@@ -95,6 +95,10 @@ add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
 # pip-completions
 eval "$(pip completion --zsh)"
 
+# Load pyenv automatically by appending
+# the following to ~/.zshrc:
+eval "$(pyenv init -)"
+
 # OPAM configuration
 [ -f "$HOME/.opam/opam-init/init.zsh" ] && source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
 

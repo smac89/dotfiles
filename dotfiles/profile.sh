@@ -45,16 +45,18 @@ if [ -d "${USER_LIB}/flutter/bin" ]; then
     add_to_path 'PATH' "${USER_LIB}/flutter/bin/cache/dart-sdk/bin"
 fi
 
-# Includes user's private bin if it exists
+# includes user's private bin if it exists
 [ -d "${HOME}/bin" ] && add_to_path 'PATH' "${HOME}/bin"
 [ -d "${HOME}/.local/bin" ] && add_to_path 'PATH' "${HOME}/.local/bin"
 
-# Ruby Stuffs
-# https://gorails.com/setup/ubuntu/16.04
-export RBENV_ROOT="${HOME}/.rbenv"
-add_to_path 'PATH' "${RBENV_ROOT}/bin"
-add_to_path 'PATH' "${RBENV_ROOT}/shims"
-add_to_path 'PATH' "${RBENV_ROOT}/plugins/ruby-build/bin"
+# rbenv
+add_to_path 'PATH' "$HOME/.rbenv/bin"
+eval "$(rbenv init -)"
+
+# pyenv
+add_to_path 'PATH' "$HOME/.pyenv/bin"
+eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # virtualenvwrapper config
 export WORKON_HOME="${DEV_DIR}/virtualenvs"

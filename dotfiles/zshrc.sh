@@ -86,16 +86,11 @@ add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
 # pip-completions
 eval "$(pip completion --zsh)"
 
-# rbenv
-add_to_path 'PATH' "$HOME/.rbenv/bin"
-eval "$(rbenv init -)"
-zgen oh-my-zsh plugins/rbenv
-
 # pyenv
-add_to_path 'PATH' "$HOME/.pyenv/bin"
-eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
 zgen oh-my-zsh plugins/pyenv
+
+# rbenv
+zgen oh-my-zsh plugins/rbenv
 
 # OPAM configuration
 [ -f "$HOME/.opam/opam-init/init.zsh" ] && source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true

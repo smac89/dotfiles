@@ -1,7 +1,5 @@
 DEV_DIR="${HOME}/Development"
 USER_LIB="${HOME}/lib"
-BREW_HOME="${HOME}/.linuxbrew"
-HOMEBREW_BIN="${BREW_HOME}/bin"
 
 export VISUAL='subl -w'
 export EDITOR="$VISUAL"
@@ -26,17 +24,8 @@ export ANDROID_NDK_HOME="${ANDROID_SDK}/ndk-bundle"
 add_to_path 'PATH' "$(printf %s: ${ANDROID_SDK}/{tools,platform-tools})"
 add_to_path 'PATH' "${ANDROID_NDK_HOME}"
 
-# Groovy
-export GROOVY_HOME="$BREW_HOME/opt/groovy/libexec/"
-
 # Swift
 add_to_path 'PATH' "${USER_LIB}/swift/usr/bin"
-
-# Linux brew stuff
-add_to_path 'PATH' "$(printf %s: ${BREW_HOME}/{bin,sbin})"
-add_to_path 'MANPATH' "${BREW_HOME}/share/man" # hack to make manpath work
-add_to_path 'INFOPATH' "${BREW_HOME}/share/info"
-add_to_path 'XDG_DATA_DIRS' "${BREW_HOME}/share"
 
 # Jython
 add_to_path 'PATH' "${USER_LIB}/jython/bin"
@@ -69,9 +58,6 @@ add_to_path 'PATH' "${RBENV_ROOT}/plugins/ruby-build/bin"
 
 # virtualenvwrapper config
 export WORKON_HOME="${DEV_DIR}/virtualenvs"
-
-# Golang
-add_to_path 'PATH' "${BREW_HOME}/opt/go/libexec/bin"
 
 # tns-completion
 [ -f "$HOME/.tnsrc" ] && source "$HOME/.tnsrc"

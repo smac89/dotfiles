@@ -4,13 +4,8 @@ source "$HOME/.zgen/zgen.zsh"
 
 DEV_DIR="${HOME}/Development"
 USER_LIB="${HOME}/lib"
-BREW_HOME="${HOME}/.linuxbrew"
-HOMEBREW_BIN="${BREW_HOME}/bin"
 
 zgen load zsh-users/zsh-completions
-
-# brew
-zgen load smac89/linuxbrew
 
 zgen load zdharma/fast-syntax-highlighting
 zgen load zsh-users/zsh-autosuggestions
@@ -26,10 +21,6 @@ zgen load lukechilds/zsh-better-npm-completion
 
 # oh-my-zsh
 zgen oh-my-zsh
-
-# rbenv
-eval "$(rbenv init -)"
-zgen oh-my-zsh plugins/rbenv
 
 {%@@ if profile == 'home' @@%}
 # golang
@@ -95,9 +86,16 @@ add_to_path 'PYTHONPATH' "${GOOGLE_APP_ENGINE_DIR}"
 # pip-completions
 eval "$(pip completion --zsh)"
 
-# Load pyenv automatically by appending
-# the following to ~/.zshrc:
+# rbenv
+add_to_path 'PATH' "$HOME/.rbenv/bin"
+eval "$(rbenv init -)"
+zgen oh-my-zsh plugins/rbenv
+
+# pyenv
+add_to_path 'PATH' "$HOME/.pyenv/bin"
 eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+zgen oh-my-zsh plugins/pyenv
 
 # OPAM configuration
 [ -f "$HOME/.opam/opam-init/init.zsh" ] && source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
@@ -111,6 +109,5 @@ unset -f add_to_path
 # cleanup
 unset DEV_DIR
 unset USER_LIB
-unset BREW_HOME
 unset HOMEBREW_BIN
 ##########################################################

@@ -101,8 +101,6 @@ function add_to_path() {
 
 DEV_DIR="${HOME}/Development"
 USER_LIB="${HOME}/lib"
-BREW_HOME="${HOME}/.linuxbrew"
-HOMEBREW_BIN="${BREW_HOME}/bin"
 
 # pip-completions
 eval "$(pip completion --bash)"
@@ -141,6 +139,11 @@ add_to_path 'PATH' "${PYENV_ROOT}/bin"
 add_to_path 'PATH' "${PYENV_ROOT}/shims"
 eval "$(pyenv init -)"
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # virtualenvwrapper config
 export VIRTUALENVWRAPPER_SCRIPT=~/.local/bin/virtualenvwrapper.sh
 source ~/.local/bin/virtualenvwrapper_lazy.sh
@@ -154,6 +157,4 @@ unset -f add_to_path
 # cleanup
 unset DEV_DIR
 unset USER_LIB
-unset BREW_HOME
-unset HOMEBREW_BIN
 ##########################################################

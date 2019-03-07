@@ -104,5 +104,4 @@ unset -f add_to_path
 # cleanup
 unset DEV_DIR
 unset USER_LIB
-unset HOMEBREW_BIN
 ##########################################################

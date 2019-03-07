@@ -2,14 +2,14 @@ DEV_DIR="${HOME}/Development"
 USER_LIB="${HOME}/lib"
 
 export VISUAL='subl -w'
-export EDITOR="$VISUAL"
+export EDITOR="joe -nobackups"
 
-# Fix path
-_temp_path="$PATH"
+### BEGIN Fix path
+temp_path="$PATH"
 PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin'
-add_to_path 'PATH' "$_temp_path"
-unset _temp_path
-
+add_to_path 'PATH' "$temp_path"
+unset temp_path
+### END Fix path
 
 add_to_path 'PKG_CONFIG_PATH' '/usr/lib/x86_64-linux-gnu/pkgconfig'
 add_to_path 'PKG_CONFIG_PATH' '/usr/share/pkgconfig'
@@ -56,7 +56,6 @@ eval "$(rbenv init -)"
 # pyenv
 add_to_path 'PATH' "$HOME/.pyenv/bin"
 eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
 
 # virtualenvwrapper config
 export WORKON_HOME="${DEV_DIR}/virtualenvs"
